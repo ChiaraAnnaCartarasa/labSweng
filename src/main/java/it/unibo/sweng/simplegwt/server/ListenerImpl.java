@@ -32,7 +32,7 @@ public class ListenerImpl implements ServletContextListener {
         System.out.println("Context initialized.");
         System.out.println("Loading data from file");
         
-    /*    
+      
         
         //se non è mai stato creato un dbCard allora lo creo e ci metto le carte lette dal Json
         ServletContext context = sce.getServletContext();
@@ -112,7 +112,7 @@ public class ListenerImpl implements ServletContextListener {
 		{
 			System.out.println("Db già esistente");
 		}
-}*/
+		}
 		
 }
 
