@@ -25,11 +25,6 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
   
   
-  public void tryUser() {
-	  DbUtente Db=new DbUtente();
-		Db.tryUser();
-	}
-  
   public String deleteUtente(String email)
   {
 	  DbUtente Db=new DbUtente();
@@ -42,4 +37,19 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return Db.registrazioneUtente(dati);
 	}
   
+  //test
+  private GreetingService mock = null;
+
+	public GreetingService getMock() {
+		return mock;
+	}
+  
+  public void setMock(GreetingService mock) {
+		this.mock = mock;
+	}
+  
+  public void tryUser() {
+	  DbUtente Db=new DbUtente();
+		Db.tryUser();
+	}
 }

@@ -19,6 +19,7 @@ public class CardPokemon extends Card {
 		this.type=type;
 		this.description=description;
 		this.rarity=rarity;
+		
 	}
 	
 	public String getIllustrator()

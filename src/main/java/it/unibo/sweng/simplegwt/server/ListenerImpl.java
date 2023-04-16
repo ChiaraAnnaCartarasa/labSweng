@@ -43,6 +43,7 @@ public class ListenerImpl implements ServletContextListener {
 			
 			//Lettura carte Magic
 			db=DBMaker.fileDB(new File("dbCardMagic")).closeOnJvmShutdown().make();
+			context.setAttribute("DB", db);
 			BTreeMap<Integer, CardMagic> map = db.treeMap("MagicMap", Serializer.INTEGER, Serializer.JAVA).createOrOpen();
         
 			try {
@@ -58,9 +59,12 @@ public class ListenerImpl implements ServletContextListener {
         		
         		i++;
         	}
+        	db.commit();
+        	db.close();
         	
         	//Lettura Carte YugiOh
         	db = DBMaker.fileDB(new File("dbCardYugi")).closeOnJvmShutdown().make();
+        	context.setAttribute("DB", db);
         	
         	BTreeMap<Integer, CardYugi> map2 = db.treeMap("YugiMap", Serializer.INTEGER, Serializer.JAVA).createOrOpen();
         	
@@ -78,11 +82,12 @@ public class ListenerImpl implements ServletContextListener {
         		j++;
         		
         	}
-        	
+        	db.commit();
+        	db.close();
         	
         	//Lettura carte Pokemon
         	db = DBMaker.fileDB(new File("dbCardPokemon")).closeOnJvmShutdown().make();
-        	
+        	context.setAttribute("DB", db);
         	BTreeMap<Integer, CardPokemon> map3 = db.treeMap("PokemonMap", Serializer.INTEGER, Serializer.JAVA).createOrOpen();
         	
         	JsonReader jread3=new JsonReader(new FileReader("/Users/giuseppecacciapuoti/eclipse-workspaces/simplegwt/src/main/java/it/unibo/sweng/simplegwt/server/pokemon.json"));
@@ -99,8 +104,8 @@ public class ListenerImpl implements ServletContextListener {
         		k++;
         		
         	}
-        	context.setAttribute("DB", db);
-        	
+        	db.commit();
+    		db.close();
 			}
 			catch(FileNotFoundException e)
 			{
@@ -112,6 +117,7 @@ public class ListenerImpl implements ServletContextListener {
 		{
 			System.out.println("Db già esistente");
 		}
+		
 		}
 		
 }
